@@ -6,9 +6,8 @@ class Simulator:
         self.max_temperature = 100
         self.country_names = []
         self.policies = {}
-        self.emit
         # initialize BAd level - how to do this?
-        # self.BAd_ppm = 150
+        self.BAd_ppm = 150
         
     def add_country(self, name: str, policy):
         """Adds a country and its policy to the simulation"""
