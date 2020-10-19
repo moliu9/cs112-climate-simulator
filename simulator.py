@@ -7,7 +7,7 @@ class Simulator:
         self.country_names = []
         self.policies = {}
         # initialize BAd level - how to do this?
-        self.BAd_ppm = 150
+        # self.BAd_ppm = 150
         
     def add_country(self, name: str, policy):
         """Adds a country and its policy to the simulation"""
@@ -26,7 +26,7 @@ class Simulator:
             # reduce BAd by 1ppm (min 150 ppm)
             self.BAd_ppm -= 1
             # calculate emission for each country
-            # calculate total BAd emission
+            # calculate global BAd amount
             total = sum(emission from all countries)
             # calculate temperature for each country
 
