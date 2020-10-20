@@ -4,7 +4,7 @@ class Baseline:
         pass
 
     def emit(self, baseline: float, threshold: float, increment: float):
-        pass
+        self.emission[self] += baseline
     
 class Reducing:
     """Reduces emissions every year"""

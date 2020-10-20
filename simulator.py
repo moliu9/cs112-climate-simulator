@@ -8,6 +8,9 @@ class Simulator:
         self.policies = {}
         # initialize BAd level of 150ppm
         self.BAd = 150
+        # initialize the emission data
+        self.emission = {'country name': 'emission (ppm)'}
+        self.temperatures = []
         
     def add_country(self, name: str, policy):
         """Adds a country and its policy to the simulation"""
@@ -26,6 +29,8 @@ class Simulator:
         # calculate global BAd amount
         total = sum(emission from all countries)
         # calculate temperature for each country
+        self.temepratures[0]['name'] = 'Omelas'
+        self.temepratures[0]['temperature'] = '20'
         # halts entire process if temperature = max_temperature (stop)
 
     def report(self):
