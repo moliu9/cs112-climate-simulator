@@ -6,8 +6,8 @@ class Simulator:
         self.max_temperature = 100
         self.country_names = []
         self.policies = {}
-        # initialize BAd level - how to do this?
-        self.BAd_ppm = 150
+        # initialize BAd level of 150ppm
+        self.BAd = 150
         
     def add_country(self, name: str, policy):
         """Adds a country and its policy to the simulation"""
@@ -17,20 +17,19 @@ class Simulator:
     def advance_year(self):
         """Advances the current year, updating country and global emissions and temperatures"""
 
-        # only implement if temp < max temp
-        if temperature > max_temperature for any country in self.policies:
-            print('This is a catastrophe!')
-        else:
-            # advance a year
-            self.year += 1
-            # reduce BAd by 1ppm (min 150 ppm)
-            self.BAd_ppm -= 1
-            # calculate emission for each country
-            # calculate global BAd amount
-            total = sum(emission from all countries)
-            # calculate temperature for each country
+        # advance a year
+        self.year += 1
+        # reduce BAd by 1ppm (min 150 ppm)
+        self.BAd -= 1
+        # calculate emission for each country
+        # store emission data in __init__
+        # calculate global BAd amount
+        total = sum(emission from all countries)
+        # calculate temperature for each country
+        # halts entire process if temperature = max_temperature (stop)
 
     def report(self):
         """Generates a report for use in the display"""
+        # store data in the __init__ call on the list of hashtables
         return [{'name': 'Omelas', 'temperature': 20},
                 {'name': 'Chalion', 'temperature': 85}]

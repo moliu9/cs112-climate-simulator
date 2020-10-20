@@ -117,7 +117,7 @@ class Display:
     def run(self):
         screen = pygame.display.set_mode((self.width, self.height))
         pygame.time.set_timer(self.timer_event, 100)
-        self.simulator.tick()
+        self.simulator.advance_year()
         while True:
             self.draw(screen)
             event = pygame.event.wait()
@@ -128,7 +128,7 @@ class Display:
                 if self.playpause_rect.collidepoint(pos):
                     self.paused = not self.paused
                 if self.step_rect.collidepoint(pos):
-                    self.simulator.tick()
+                    self.simulator.advance_year()
             elif event.type == self.timer_event:
                 if not self.paused:
-                    self.simulator.tick()
+                    self.simulator.advance_year()

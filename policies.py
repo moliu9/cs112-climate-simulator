@@ -3,7 +3,7 @@ class Baseline:
     def __init__(self, baseline: float):
         pass
 
-    def emit(self):
+    def emit(self, baseline: float, threshold: float, increment: float):
         pass
     
 class Reducing:
@@ -11,7 +11,7 @@ class Reducing:
     def __init__(self, baseline: float, increment: float):
         pass
 
-    def emit(self):
+    def emit(self, baseline: float, threshold: float, increment: float):
         pass
 
 class TemperaturePanic:
@@ -19,7 +19,7 @@ class TemperaturePanic:
     def __init__(self, baseline: float, threshold: float, increment: float):
         pass
 
-    def emit(self):
+    def emit(self, baseline: float, threshold: float, increment: float):
         pass
 
 class NeighborAverage:
@@ -27,5 +27,5 @@ class NeighborAverage:
     def __init__(self, baseline: float, increment: float):
         pass
 
-    def emit(self):
+    def emit(self, baseline: float, threshold: float, increment: float): # pass in
         pass
