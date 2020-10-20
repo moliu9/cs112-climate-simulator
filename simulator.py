@@ -32,6 +32,12 @@ class Simulator:
         self.temepratures[0]['name'] = 'Omelas'
         self.temepratures[0]['temperature'] = '20'
         # halts entire process if temperature = max_temperature (stop)
+            fst_country_temp =  (self.BAd_ppm / 5)
+            for country in self.country_names:
+              new_temp = fst_country_temp  + (self.policies.index(country) * 5)
+              report_data.append[{'name': country, 'temperature': new_temp}]
+            return report_data
+
 
     def report(self):
         """Generates a report for use in the display"""
