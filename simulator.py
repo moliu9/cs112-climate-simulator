@@ -1,3 +1,6 @@
+from policies import *
+
+
 class Simulator:
     """Simulates the climate of Branlex"""
     
@@ -10,7 +13,7 @@ class Simulator:
         self.BAd = 150
         # initialize the emission data
         self.emission = {}  # do we need this?
-        self.temperatures = []  # do we need this?#
+        self.temperatures = {}  # do we need this?
         self.report_data = []
         
     def add_country(self, name: str, policy):
@@ -25,24 +28,23 @@ class Simulator:
         # reduce BAd by 1ppm (min 150 ppm)
         if self.BAd > 150:
             self.BAd -= 1
-        fst_country_temp = (self.BAd_ppm / 5)
         for country in self.country_names:
-            # calculate emission for each country
-            # store emission data in __init__
-            # calculate temperature for each country
-            new_temp = fst_country_temp + (self.country_names.index(country) * 5)
-            self.temperatures.append(new_temp)
-            self.emission[country] = country.emit(baseline, threshold, increment, self.temperatures, self.emission)
+            # calculate emission for each country; store emission data in self.emission dictionary
+            self.emission[country] = self.policies[country].emit(baseline, threshold, increment,
+                                                                 self.temperatures, self.emission)
             self.BAd += self.emission[country]
-            # halts entire process if temperature = max_temperature (stop)
-            # base temp
-            if new_temp >= self.max_temperature:
+        # calculate temperature for the north-most country
+        base_temp = (self.BAd / 5)
+        # calculate the temperatures for the rest of the countries
+        for country in self.country_names:
+            self.temperatures[country] = base_temp + (self.country_names.index(country) * 5)
+        # halts entire process if temperature = max_temperature (stop)
+            if self.temperatures[country] >= self.max_temperature:
                 print("This is a catastrophic  event!")
-            else:
-                report_data.append[{'name': country, 'temperature': new_temp}]
-        return report_data
+                break  # is this right?
 
     def report(self):
         """Generates a report for use in the display"""
         # store data in the __init__ call on the list of hashtables
-        return self.report_data
+        return [{'name': country_name, 'temperature': country_temperature} for country_name, country_temperature
+                in self.temperatures.items()]

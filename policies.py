@@ -3,18 +3,20 @@ class Baseline:
     def __init__(self, baseline: float):
         self.baseline = baseline
 
-    def emit(self, baseline: float, threshold: float, increment: float, temperature : list, emission: dict):
+    def emit(self, baseline: float, threshold: float, increment: float, emission: dict, temperature : dict):
         emission[self] += baseline
-    
+
+
 class Reducing:
     """Reduces emissions every year"""
     def __init__(self, baseline: float, increment: float):
         self.baseline = baseline
         self.increment = increment
 
-    def emit(self, baseline: float, threshold: float, increment: float, temperature : list, emission: dict):
+    def emit(self, baseline: float, threshold: float, increment: float, emission: dict, temperature : dict):
         if emission[self] > 0:
-          emission[self] += (baseline - increment)
+            emission[self] += (baseline - increment)
+
 
 class TemperaturePanic:
     """Emits at a constant rate until a temp threshold is reached"""
@@ -23,10 +25,7 @@ class TemperaturePanic:
         self.threshold = threshold
         self.increment = increment
 
-
-
-
-    def emitemit(self, baseline: float, threshold: float, increment: float, temperature : list, emission: dict):
+    def emit(self, baseline: float, threshold: float, increment: float, emission: dict, temperature: dict):
         if temperature >= threshold:
             if emission[self] > 0:
                 emission[self] += (baseline - increment)
@@ -46,6 +45,3 @@ class NeighborAverage:
             emission[self] += (baseline - increment)
         else:
             emission[self] += baseline
-
-
-
