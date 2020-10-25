@@ -41,7 +41,7 @@ class Simulator:
             # calculate emission for each country; store emission data in self.emission dictionary
             self.emission[country] = \
                 self.policies[country].emit(self.temperatures[country],
-                                            self.find_neighbor_average(self, i, len(self.country_names)))
+                                            self.find_neighbor_average(i, len(self.country_names)))
             self.BAd += self.emission[country]
         # calculate temperature for the north-most country
         base_temp = (self.BAd / 5)
