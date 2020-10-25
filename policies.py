@@ -1,48 +1,54 @@
 class Baseline:
     """Emits at a constant rate"""
     def __init__(self, baseline: float):
-        self.baseline = baseline
+        self.emission = baseline
 
-    def emit(self, baseline: float, threshold: float, increment: float, emission: dict, temperature: dict):
-        return self.baseline
+    def emit(self, own_temperature, neighbor_average):
+        return self.emission
 
 
 class Reducing:
     """Reduces emissions every year"""
     def __init__(self, baseline: float, increment: float):
-        self.baseline = baseline
+        self.emission = baseline
         self.increment = increment
 
-    def emit(self, baseline: float, threshold: float, increment: float, emission: dict, temperature: dict):
-        if emission[self] > 0:
-            emission[self] -= increment
-        return emission[self]
+    def emit(self, own_temperature, neighbor_average):
+        if self.emission >= 0:
+            self.emission -= self.increment
+            if self.emission < 0:
+                self.emission = 0
+        return self.emission
 
 
 class TemperaturePanic:
     """Emits at a constant rate until a temp threshold is reached"""
     def __init__(self, baseline: float, threshold: float, increment: float):
-        baseline[self] = baseline
+        self.emission = baseline
         self.threshold = threshold
         self.increment = increment
 
-    def emit(self, baseline: float, threshold: float, increment: float, emission: dict, temperature: dict):
-        if temperature[self] >= threshold:
-            if emission[self] > 0:
-                emission[self] -= increment
-        return emission[self]
+    def emit(self, own_temperature, neighbor_average):
+        if own_temperature >= self.threshold:
+            if self.emission > 0:
+                self.emission -= self.increment
+                if self.emission < 0:
+                    self.emission = 0
+        return self.emission
 
 
 class NeighborAverage:
     """Adjusts emissions towards its neighbors' average"""
     def __init__(self, baseline: float, increment: float):
-        baseline[self] = baseline
+        self.emission = baseline
         self.increment = increment
 
-    def emit(self, baseline: float, threshold: float, increment: float, emission: dict, temperature: dict):
-            avg_temp = (sum(temperature.values()) / len(temperature))
-            if avg_temp <= emission[self]:
-                emission[self] -= increment
-            else:
-                emission[self] += increment
-            return emission[self]
+    def emit(self, own_temperature, neighbor_average):
+        if self.emission > neighbor_average:
+            self.emission -= self.increment
+            if self.emission < 0:
+                self.emission = 0
+        else:
+            self.emission =+ self.increment
+        return self.emission
+
