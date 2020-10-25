@@ -28,8 +28,7 @@ class TemperaturePanic:
 
     def emit(self, baseline: float, threshold: float, increment: float, emission: dict, temperature: dict):
         if temperature >= threshold:
-            if emission[self] > 0:
-                emission[self] -= increment
+                emission[self] = max(emission[self] - increment, 0)
 
         return emission[self]
 
@@ -42,7 +41,7 @@ class NeighborAverage:
 
     def emit(self, baseline: float, threshold: float, increment: float, temperature: list, emission: dict):
             avg_temp = (sum(temperature) / len(temperature))
-            if avg_temp <= emission[self]:
+            if avg_temp < emission[self]:
                 emission[self] -= increment
             else:
                 emission[self] += increment
