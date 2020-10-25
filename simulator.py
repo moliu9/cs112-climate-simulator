@@ -1,5 +1,6 @@
 from policies import *
 
+
 class Simulator:
     """Simulates the climate of Branlex"""
     
