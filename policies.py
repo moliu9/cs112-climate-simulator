@@ -49,6 +49,6 @@ class NeighborAverage:
             if self.emission < 0:  # if the emission goes below zero
                 self.emission = 0
         else:
-            self.emission =+ self.increment  # if the emission is lower than or equal to neighbors' average
+            self.emission += self.increment  # if the emission is lower than or equal to neighbors' average
         return self.emission
 
