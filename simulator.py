@@ -1,3 +1,4 @@
+from policies import *
 class Simulator:
     """Simulates the climate of Branlex"""
     
@@ -47,8 +48,7 @@ class Simulator:
             self.temperatures[country] = base_temp + (self.country_names[i] * 5)
         # halts entire process if temperature = max_temperature (stop)
             if self.temperatures[country] >= self.max_temperature:
-                print("This is a catastrophic event!")
-                break
+                raise Exception("This is a catastrophe")
 
     def report(self):
         """Generates a report for use in the display"""
