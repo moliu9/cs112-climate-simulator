@@ -1,5 +1,6 @@
 from simulator import Simulator
 import policies
+import pytest
 
 
 # testing find_neighbor_average helper function
@@ -7,6 +8,8 @@ def test_find_neighbor_average():
     s = Simulator()
     s.country_names = ['Atlantis', 'Omelas', 'Vulcan', 'Arcadia', 'Chalion']
     s.emission = {'Atlantis': 10, 'Omelas': 16, 'Vulcan': 18, 'Arcadia': 22, 'Chalion': 47}
+    # if there is only one country
+    assert s.find_neighbor_average(0, 1) == 0
     # the north most country refers to its southern neighbor
     assert s.find_neighbor_average(0, 5) == 16
     # the south most country refers to its northern neighbor
@@ -16,6 +19,7 @@ def test_find_neighbor_average():
 
 
 # testing functionalities inside the advance_year method
+
 # testing advancing a year in time
 def test_year():
     s = Simulator()
@@ -82,9 +86,10 @@ def test_country_temperatures():
     o.advance_year()
     with pytest.raises(Exception):
         o.advance_year()
-    #Raises the error 'Temp has reached max for a country,
+    # Raises the error 'Temp has reached max for a country,
     # we will all die. This is a catastrophe' since atlantis will reach the
     # max temperature first, the simulation will stop
+
 
 # testing that the report is displayed in desired manner
 def test_report():
@@ -98,7 +103,7 @@ def test_report():
     assert p.report() == [{'name': 'Chicago', 'temperature': 50},
     {'name': 'Boston', 'temperature': 62}, {'name': 'Providence',
                                             'temperature': 56}]
-    #report function properly returns the correct list we wanted
+    #  report function properly returns the correct list we wanted
 
 
 

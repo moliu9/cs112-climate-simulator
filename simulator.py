@@ -14,13 +14,17 @@ class Simulator:
         """Adds a country and its policy to the simulation"""
         self.country_names.append(name)
         self.policies[name] = policy
-        self.temperatures[name] = 0  # are these right?
-        self.emission[name] = 0 # are these right?
+        self.emission[name] = 0
+        base_temp = self.BAd / 5
+        # calculate the temperatures for the rest of the countries using temperature of north-most country
+        for i, country in enumerate(self.country_names):
+            self.temperatures[country] = base_temp + (i * 5)
 
     def find_neighbor_average(self, i, number_of_countries):
         """"Helper function that calculates the neighboring countries' average emission """
-        average = 0
-        if i == 0:  # the north-most country (has no northern neighbor)
+        if number_of_countries == 1:
+            return 0
+        elif i == 0:  # the north-most country (has no northern neighbor)
             average = self.emission[self.country_names[i+1]]  # average equals to its southern neighbor's emission
         elif i == number_of_countries - 1:  # the south-most country (has no southern neighbor)
             average = self.emission[self.country_names[i-1]]  # average equals to its northern neighbor's emission
