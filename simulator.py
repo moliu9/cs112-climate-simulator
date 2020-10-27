@@ -15,6 +15,8 @@ class Simulator:
         """Adds a country and its policy to the simulation"""
         self.country_names.append(name)
         self.policies[name] = policy
+        self.temperatures[name] = 0
+        self.emission[name] = 0
 
     def find_neighbor_average(self, i, number_of_countries):
         """"Helper function that calculates the neighboring countries' average emission """
@@ -45,7 +47,7 @@ class Simulator:
         base_temp = (self.BAd / 5)
         # calculate the temperatures for the rest of the countries using temperature of north-most country
         for i, country in enumerate(self.country_names):
-            self.temperatures[country] = base_temp + (self.country_names[i] * 5)
+            self.temperatures[country] = base_temp + (i * 5)
         # halts entire process if temperature = max_temperature (stop)
             if self.temperatures[country] >= self.max_temperature:
                 raise Exception("This is a catastrophe")
