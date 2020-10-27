@@ -49,7 +49,7 @@ class Simulator:
             self.temperatures[country] = base_temp + (i * 5)
         # halts entire process if temperature = max_temperature (stop)
             if self.temperatures[country] >= self.max_temperature:
-                raise Exception("This is a catastrophe")
+                raise Exception("Temp has reached max for a country, we will all die. This is a catastrophe")
 
     def report(self):
         """Generates a report for use in the display"""

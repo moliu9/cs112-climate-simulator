@@ -76,15 +76,32 @@ def test_global_BAd():
 
 # testing that country temperatures are updated
 def test_country_temperatures():
-    # update while temperature does not exceed max temperature
-    # exception raised when
-    # with pytest.raises(Exception):
-    pass
-
+    o = Simulator()
+    o.add_country('Atlantis', policies.Baseline(99))
+    o.add_country('Vulcan', policies.Baseline(43))
+    o.add_country('Arcadia', policies.Baseline(34))
+    o.add_country('Chalion', policies.Baseline(34))
+    o.advance_year()
+    with pytest.raises(Exception):
+        o.advance_year()
+    #Raises the error 'Temp has reached max for a country,
+    # we will all die. This is a catastrophe' since atlantis will reach the
+    # max temperature first, the simulation will stop
 
 # testing that the report is displayed in desired manner
 def test_report():
-    pass
+    p = Simulator()
+    p.country_names.append("Chicago")
+    p.country_names.append("Boston")
+    p.country_names.append("Providence")
+    p.temperatures["Chicago"] = 50
+    p.temperatures["Boston"] = 62
+    p.temperatures["Providence"] = 56
+    assert p.report() == [{'name': 'Chicago', 'temperature': 50},
+    {'name': 'Boston', 'temperature': 62}, {'name': 'Providence',
+                                            'temperature': 56}]
+    #report function properly returns the correct list we wanted
+
 
 
 
