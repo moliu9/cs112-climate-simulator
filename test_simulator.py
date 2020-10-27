@@ -1,6 +1,5 @@
 from simulator import Simulator
 import policies
-import pytest
 
 
 # testing find_neighbor_average helper function
@@ -17,7 +16,6 @@ def test_find_neighbor_average():
 
 
 # testing functionalities inside the advance_year method
-
 # testing advancing a year in time
 def test_year():
     s = Simulator()
