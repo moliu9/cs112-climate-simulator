@@ -1,4 +1,3 @@
-from policies import *
 class Simulator:
     """Simulates the climate of Branlex"""
     
@@ -15,8 +14,8 @@ class Simulator:
         """Adds a country and its policy to the simulation"""
         self.country_names.append(name)
         self.policies[name] = policy
-        self.temperatures[name] = 0
-        self.emission[name] = 0
+        self.temperatures[name] = 0  # are these right?
+        self.emission[name] = 0 # are these right?
 
     def find_neighbor_average(self, i, number_of_countries):
         """"Helper function that calculates the neighboring countries' average emission """

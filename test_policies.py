@@ -16,18 +16,15 @@ def test_reducing():
     assert Reducing(3, 5).emit(0,1) == 0
     # if the emissions are above zero
     assert Reducing(6, 5).emit(0,1) == 1
-    # assert Reducing(4, 5).emit(0,1) == 0
 
 
 def test_temperature_panic():
     # if temp is lower than threshold
-    assert TemperaturePanic(3, 5, 5).emit(1,6) == 3
+    assert TemperaturePanic(3, 5, 5).emit(1, 6) == 3
     # if temp is higher than the threshold
-    assert TemperaturePanic(10, 5,3 ).emit(10,1) == 7
+    assert TemperaturePanic(10, 5, 3).emit(10, 1) == 7
     # if emissions fall below zero
-    assert TemperaturePanic(3, 5 ,5).emit(10,1) == 0
-    # normal case
-    assert TemperaturePanic(3, 5, 4).emit(12,5) == 12
+    assert TemperaturePanic(3, 5, 5).emit(10, 1) == 0
 
 
 def test_neighbor_average():
